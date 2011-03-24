@@ -1,4 +1,6 @@
 Gidm::Application.routes.draw do
+  resources :doers, :except => [:index] # in order to get /doers to work you would have to define index in your controller and setup a view page for it and delete except/index method from here
+  
   match '/contact', :to => 'pages#contact'
   match '/about',   :to => 'pages#about'
   match '/help',    :to => 'pages#help'

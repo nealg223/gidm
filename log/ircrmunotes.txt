@@ -1,0 +1,13 @@
+https://github.com/nealg223/gidm
+
+http://forrst.com/people/nealsales
+
+http://www.getitdonemachine.com/
+
+I am focusing my first ruby learning project to be a simple task/project manager. I would love to pick your brain about how a beginner rubyist could/should go about conceptualizing the approach to creating it as well as the key pieces necessary for it to go from an idea to a basic app online. 
+
+Model - 
+
+Project - There are many projects. Each project has many tasks. 
+
+Task - There are many tasks. Each task is a string no longer than 140 characters.
