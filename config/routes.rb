@@ -1,5 +1,11 @@
 Gidm::Application.routes.draw do
-  resources :doers, :except => [:index] # in order to get /doers to work you would have to define index in your controller and setup a view page for it and delete except/index method from here
+  resources :doers
+  
+  get "doers/new"
+  
+  match '/signup', :to => 'doers#new'
+  
+  # resources :doers, :except => [:index] # in order to get /doers to work you would have to define index in your controller and setup a view page for it and delete except/index method from here
   
   match '/contact', :to => 'pages#contact'
   match '/about',   :to => 'pages#about'
@@ -7,10 +13,10 @@ Gidm::Application.routes.draw do
   
   root :to => 'pages#home'
   
-  get "pages/home"
-  get "pages/contact"
-  get "pages/about"
-  get "pages/help"
+  # get "pages/home"
+  # get "pages/contact"
+  # get "pages/about"
+  # get "pages/help"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

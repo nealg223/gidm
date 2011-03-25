@@ -10,14 +10,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110324005830) do
+ActiveRecord::Schema.define(:version => 20110325204915) do
 
   create_table "doers", :force => true do |t|
     t.string   "name"
     t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "encrypted_password"
+    t.string   "salt"
   end
+
+  add_index "doers", ["email"], :name => "index_doers_on_email", :unique => true
 
   create_table "pomodoros", :force => true do |t|
     t.string   "state"

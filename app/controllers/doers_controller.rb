@@ -1,11 +1,20 @@
 class DoersController < ApplicationController
+  attr_accessor :name, :email
   
   def new
     @doer = Doer.new
+    @title = "Sign up"
   end
   
   def create
     @doer = Doer.new(params[:doer])
+    if @doer.save
+      flash[:success] = "You now have access to the get it done machine."
+      redirect_to @doer
+    else
+      @title = "Sign up"
+      render 'new'
+    end
   end
   
   def edit
@@ -25,6 +34,7 @@ class DoersController < ApplicationController
   
   def show
     @doer = Doer.find(params[:id])
+    @title = @doer.name
     @projects = @doer.projects
     @tasks = @doer.tasks
   end
