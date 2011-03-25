@@ -1,4 +1,14 @@
-<h1>
-  <%= gravatar_image_tag @doer.email %>
-  <%= @doer.name %>
-</h1>
+<table class="profile" summary="Profile information">
+  <tr>
+    <td class="main">
+      <h1>
+        <%= gravatar_for @doer %>
+        <%= @doer.name %>
+      </h1>
+    </td>
+    <td class="sidebar round">
+	  <strong>Name</strong> <%= @doer.name %><br />
+      <strong>URL</strong>  <%= link_to user_path(@doer), @doer %>
+	</td>
+  </tr>
+</table>

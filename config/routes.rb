@@ -1,8 +1,6 @@
 Gidm::Application.routes.draw do
   resources :doers
   
-  get "doers/new"
-  
   match '/signup', :to => 'doers#new'
   
   # resources :doers, :except => [:index] # in order to get /doers to work you would have to define index in your controller and setup a view page for it and delete except/index method from here

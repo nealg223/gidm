@@ -1,6 +1,13 @@
 class DoersController < ApplicationController
   attr_accessor :name, :email
   
+  #def index
+    #@title = "Done Machine Operator"
+    #@doer = Doer.find(params[:id])
+    #if @doer.nil?
+      #redirect_to doers_path
+  #end
+  
   def new
     @doer = Doer.new
     @title = "Sign up"

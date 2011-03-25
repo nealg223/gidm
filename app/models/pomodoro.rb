@@ -1,3 +1,14 @@
+# == Schema Information
+# Schema version: 20110325204915
+#
+# Table name: pomodoros
+#
+#  id         :integer         not null, primary key
+#  state      :string(255)
+#  created_at :datetime
+#  updated_at :datetime
+#
+
 class Pomodoro < ActiveRecord::Base
   attr_reader :state
 end
