@@ -2,9 +2,18 @@
     <%= link_to logo, root_path %> 
     <nav class="round">
       <ul> 
-	    <li><%= link_to "Home", 'root_path' %></li>
-	    <li><%= link_to "Help", 'help_path' %></li>
-	    <li><%= link_to "Sign in", 'signin_path' %></li>
+        <% if signed_in? %>
+        <li><%= link_to "Setup", current_doer %></li>
+<!-- This could potentially be setup_path instead of setup_path -->
+        <li><%= link_to "Project Hub", projects_path %></li>
+        <li><%= link_to "Activate Machine", tasks_path %></li>
+        <li><%= link_to "Doers", doers_path %></li>
+        <li><%= link_to "Settings", edit_doer_path(current_doer) %></li>
+        <li><%= link_to "Sign out", signout_path, :method => :delete %></li>
+        <% else %>
+        <li><%= link_to "Sign in", signin_path %></li>
+        <li><%= link_to "Help", help_path %></li>
+        <% end %>
       </ul> 
     </nav>
 </header>

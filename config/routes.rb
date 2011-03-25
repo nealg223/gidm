@@ -1,13 +1,18 @@
 Gidm::Application.routes.draw do
   resources :doers
+  resources :sessions, :only => [:new, :create, :destroy]
   
-  match '/signup', :to => 'doers#new'
+  match '/signup',   :to => 'doers#new'
+  match '/signin',   :to => 'sessions#new'
+  match '/signout',  :to => 'sessions#destroy'
   
-  # resources :doers, :except => [:index] # in order to get /doers to work you would have to define index in your controller and setup a view page for it and delete except/index method from here
+  match '/contact',  :to => 'pages#contact'
+  match '/about',    :to => 'pages#about'
+  match '/help',     :to => 'pages#help'
   
-  match '/contact', :to => 'pages#contact'
-  match '/about',   :to => 'pages#about'
-  match '/help',    :to => 'pages#help'
+  # match '/setup',    :to => 'doers#show'
+  match '/projects', :to => 'projects#index' # should be the page where doers can see inputted projects and tasks and click through to begin a pomodoro on a single task under a project, need to add an index action to the projects controller
+  match '/tasks',    :to => 'tasks#index' # should be the page where doers can begin a pomodoro on the chosen task, need to add an index action to the tasks controller
   
   root :to => 'pages#home'
   

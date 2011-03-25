@@ -1,12 +1,10 @@
 class DoersController < ApplicationController
   attr_accessor :name, :email
   
-  #def index
-    #@title = "Done Machine Operator"
-    #@doer = Doer.find(params[:id])
-    #if @doer.nil?
-      #redirect_to doers_path
-  #end
+  def index
+    @title = "All doers"
+    @doers = Doer.paginate(:page => params[:page])
+  end
   
   def new
     @doer = Doer.new
@@ -16,6 +14,7 @@ class DoersController < ApplicationController
   def create
     @doer = Doer.new(params[:doer])
     if @doer.save
+      sign_in @doer
       flash[:success] = "You now have access to the get it done machine."
       redirect_to @doer
     else

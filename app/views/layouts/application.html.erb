@@ -10,7 +10,7 @@
 	  <%= render 'layouts/header' %> 
 	  <section class="round">
 	    <% flash.each do |key, value| %>
-		  <div class="flash <%= key %>"<%= value %></div>
+		  <%= content_tag(:div, value, :class => "flash #{key}") %>
 	    <% end %>
         <%= yield %>
       </section>
@@ -20,4 +20,4 @@
   </body> 
 </html>
 
-<!-- views are really important, use partials, focus on the four key pages, maybe adding a task become an ajax request could take care of inputting tasks as opposed to doing a view for inputting tasks (ajax will come later, last thing you want to do but when you do it will be advantaged by unobtrosice js) -->
+<!-- views are really important, use partials, focus on the four key pages, maybe adding a task become an ajax request could take care of inputting tasks as opposed to doing a view for inputting tasks (ajax will come later, last thing you want to do but when you do it will be advantaged by unobtrosive js) -->
