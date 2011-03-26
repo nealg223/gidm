@@ -1,9 +1,20 @@
 class DoersController < ApplicationController
-  attr_accessor :name, :email
+  before_filter :authenticate, :only => [:index, :edit, :update]
+  before_filter :correct_doer, :only => [:edit, :update]
+  before_filter :admin_doer,   :only => :destroy
+  
+  # attr_accessor :name, :email -- may not need this code
   
   def index
     @title = "All doers"
     @doers = Doer.paginate(:page => params[:page])
+  end
+  
+  def show
+    @doer = Doer.find(params[:id])
+    @title = @doer.name
+    @projects = @doer.projects
+    @tasks = @doer.tasks
   end
   
   def new
@@ -24,7 +35,7 @@ class DoersController < ApplicationController
   end
   
   def edit
-    @doer = Doer.find(params[:id])
+    @title = "Edit doer"
   end
   
   def update
@@ -38,13 +49,26 @@ class DoersController < ApplicationController
     end
   end
   
-  def show
-    @doer = Doer.find(params[:id])
-    @title = @doer.name
-    @projects = @doer.projects
-    @tasks = @doer.tasks
+  def destroy
+    Doer.find(params[:id]).destroy
+    flash[:success] = "Doer destroyed."
+    redirect_to doers_path
   end
-
+  
+  private
+    
+    def authenticate
+      deny_access unless signed_in?
+    end
+    
+    def correct_doer
+      @doer = Doer.find(params[:id])
+      redirect_to(root_path) unless current_doer?(@doer)
+    end
+    
+    def admin_doer
+      redirect_to(root_path) unless current_doer.admin?
+    end
 end
 
 # see active relation cheat sheet under chain methods and research api
