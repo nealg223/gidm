@@ -1,0 +1,51 @@
+<!-- Standard viewing of the doer -->
+
+<table class="projects" summary="Projects information">
+  <tr>
+    <td class="main">
+      <h1>
+        <%= gravatar_for @doer %>
+        <%= @doer.name %>
+      </h1>
+
+<!-- The form for creating new projects -->
+
+    <%= form_for @project do |f| %>
+	  <%= render 'shared/error_messages', :object => f.object %>
+	  <div class="field">
+		<%= f.text_area :content %>
+	  </div>
+	  <div class="actions">
+		<%= f.submit "Submit" %>
+	  </div>
+	<% end %>
+
+<!-- The show action for the created projects -->
+
+	<tr>
+	  <td class="project">
+		<span class="content"><%= project.content %></span>
+		<span class="timestamp">
+		  Posted <%= time_ago_in_words(project.created_at) %> ago.
+		</span>
+	  </td>
+	  <% doer = project.doer rescue User.find(project.doer_id) %>
+	  <% if current_doer?(doer) %>
+	  <td>
+		<%= link_to "delete", project, :method => :delete,
+										 :confirm => "You sure?",
+										 :title => project.content %>
+	  </td>
+	  <% end %>
+	</tr>
+
+<!-- Sidebar for projects page, may be deleted... -->
+
+    </td>
+    <td class="sidebar round">
+	  <strong>Name</strong> <%= @doer.name %><br />
+      <strong>URL</strong>  <%= link_to doer_path(@doer), @doer %>
+	</td>
+  </tr>
+</table>
+

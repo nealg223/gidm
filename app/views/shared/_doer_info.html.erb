@@ -1,0 +1,11 @@
+<div class="doer_info">
+  <a href="<%= doer_path(current_doer) %>">
+	<%= gravatar_for current_doer, :size => 30 %>
+	<span class="doer_name">
+	  <%= current_doer.name %>
+	</span>
+	<span class="projects">
+	  <%= pluralize(current_doer.projects.count, "project") %>
+	</span>
+  </a>
+</div>

@@ -35,6 +35,10 @@ module SessionsHelper
   def current_doer?(doer)
     doer == current_doer
   end
+    
+  def authenticate
+    deny_access unless signed_in?
+  end
   
   def deny_access
     store_location

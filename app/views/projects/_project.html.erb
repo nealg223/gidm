@@ -1,0 +1,17 @@
+
+	<tr>
+	  <td class="project">
+		<span class="content"><%= project.content %></span>
+		<span class="timestamp">
+		  Posted <%= time_ago_in_words(project.created_at) %> ago.
+		</span>
+	  </td>
+	  <% doer = project.doer rescue User.find(project.doer_id) %>
+	  <% if current_doer?(doer) %>
+	  <td>
+		<%= link_to "delete", project, :method => :delete,
+										 :confirm => "You sure?",
+										 :title => project.content %>
+	  </td>
+	  <% end %>
+	</tr>

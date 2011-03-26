@@ -1,6 +1,7 @@
 Gidm::Application.routes.draw do
   resources :doers
   resources :sessions, :only => [:new, :create, :destroy]
+  resources :projects, :only => [:create, :destroy]
   
   match '/signup',   :to => 'doers#new'
   match '/signin',   :to => 'sessions#new'
@@ -11,8 +12,8 @@ Gidm::Application.routes.draw do
   match '/help',     :to => 'pages#help'
   
   # match '/setup',    :to => 'doers#show'
-  match '/projects', :to => 'projects#index' # should be the page where doers can see inputted projects and tasks and click through to begin a pomodoro on a single task under a project, need to add an index action to the projects controller
-  match '/tasks',    :to => 'tasks#index' # should be the page where doers can begin a pomodoro on the chosen task, need to add an index action to the tasks controller
+  # match '/projects', :to => 'projects#index' # should be the page where doers can see inputted projects and tasks and click through to begin a pomodoro on a single task under a project, need to add an index action to the projects controller
+  # match '/tasks',    :to => 'tasks#index' # should be the page where doers can begin a pomodoro on the chosen task, need to add an index action to the tasks controller
   
   root :to => 'pages#home'
   

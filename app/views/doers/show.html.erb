@@ -5,10 +5,16 @@
         <%= gravatar_for @doer %>
         <%= @doer.name %>
       </h1>
+      <% unless @doer.projects.empty? %>
+        <table class="projects" summary="Doer projects">
+	      <% render @projects %>
+	    </table>
+	  <% end %>
     </td>
     <td class="sidebar round">
 	  <strong>Name</strong> <%= @doer.name %><br />
       <strong>URL</strong>  <%= link_to doer_path(@doer), @doer %>
+      <strong>Projects</strong> <%= @doer.projects.count %>
 	</td>
   </tr>
 </table>

@@ -1,0 +1,5 @@
+<% unless @feed_items.empty? %>
+  <table class="projects" summary="Doer projects">
+	<%= render :partial => 'shared/feed_item', :collection => @feed_items %>
+  </table>
+<% end %>

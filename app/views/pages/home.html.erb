@@ -1,6 +1,21 @@
-<h1>Get It Done Machine</h1> 
-<p>
-  Enter the machine...
-</p>
+<% if signed_in? %>
+  <table class="front" summary="For signed-in doers">
+	<tr>
+	  <td class="main">
+		<h1 class="project">Talk does not cook rice.</h1>
+		<%= render 'shared/project_form' %>
+		<%= render 'shared/feed' %>
+	  </td>
+	  <td class="sidebar round">
+		<%= render 'shared/doer_info' %>
+	  </td>
+	</tr>
+  </table>
+<% else %>
+  <h1>Get It Done Machine</h1> 
+  <p>
+    Enter the machine...
+  </p>
 
-<%= link_to "Enter the machine", signup_path, :class => "signup_button round" %>
+  <%= link_to "Enter the machine", signup_path, :class => "signup_button round" %>
+<% end %>

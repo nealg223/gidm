@@ -16,7 +16,7 @@ class Doer < ActiveRecord::Base
   attr_accessor :password
   attr_accessible :name, :email, :password, :password_confirmation
   
-  has_many :projects
+  has_many :projects,  :dependent => :destroy
   has_many :tasks,     :through => :projects
   has_many :pomodoros, :through => :tasks
   
@@ -34,6 +34,11 @@ class Doer < ActiveRecord::Base
                        :length       => { :within => 6..40}
   
   before_save :encrypt_password
+  
+  def feed
+    # This is preliminary, ch. 12 will have the full implementation.
+    Project.where("doer_id = ?", id)
+  end
   
   # Return true if the doer's password matches the submitted password.
   def has_password?(submitted_password)

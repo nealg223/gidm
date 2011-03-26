@@ -2,9 +2,7 @@ class DoersController < ApplicationController
   before_filter :authenticate, :only => [:index, :edit, :update]
   before_filter :correct_doer, :only => [:edit, :update]
   before_filter :admin_doer,   :only => :destroy
-  
-  # attr_accessor :name, :email -- may not need this code
-  
+    
   def index
     @title = "All doers"
     @doers = Doer.paginate(:page => params[:page])
@@ -40,7 +38,7 @@ class DoersController < ApplicationController
   
   def update
     @doer = "Update doer"
-    if @doer.update_attributes(params[:id])
+    if @doer.update_attributes(params[:doer])
       flash[:success] = "Doer updated."
       redirect_to @doer
     else
@@ -56,10 +54,6 @@ class DoersController < ApplicationController
   end
   
   private
-    
-    def authenticate
-      deny_access unless signed_in?
-    end
     
     def correct_doer
       @doer = Doer.find(params[:id])

@@ -1,0 +1,13 @@
+change this
+
+<%= form_for @search, :url => vagas_path do |f| %>
+    <%= f.text_field :titulo_or_empresa_user_username_contains %>
+    <%= f.submit "", :class => "search-button", :name => "submit" %>
+<% end %>
+
+to this
+
+<%= form_tag vagas_path, :method => :get, :id => 'vaga_search' do %>
+    <%= text_field_tag 'search[titulo_or_empresa_user_username_contains]' %>
+    <%= submit_tag "", :class => "search-button", :name => "submit", :id => 'search_submit' %>
+<% end %>

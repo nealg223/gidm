@@ -11,6 +11,13 @@
 #
 
 class Project < ActiveRecord::Base
-  attr_accessible :title
+  attr_accessible :content
+  
+  belongs_to      :doer
   has_many        :tasks
+  
+  validates       :content, :presence => true, :length => { :maximum => 40 }
+  validates       :doer_id, :presence => true
+  
+  default_scope   :order => 'projects.created_at DESC'  
 end

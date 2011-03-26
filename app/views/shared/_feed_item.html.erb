@@ -1,0 +1,21 @@
+<tr>
+  <td class="gravatar">
+	<%= link_to gravatar_for(feed_item.doer), feed_item.doer %>
+  </td>
+  <td class="project">
+	<span class="doer">
+	  <%= link_to feed_item.doer.name, feed_item.doer %>
+	</span>
+	<span class="content"><%= feed_item.content %></span>
+	<span class="timestamp">
+	  Posted <%= time_ago_in_words(feed_item.created_at) %> ago.
+	</span>
+  </td>
+  <% if current_doer?(feed_item.doer) %>
+  <td>
+	<%= link_to "delete", feed_item, :method => :delete,
+									 :confirm => "You sure?",
+									 :title => feed_item.content %>
+  </td>
+  <% end %>
+</tr>
